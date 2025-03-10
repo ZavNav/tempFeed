@@ -23,7 +23,7 @@ jobs:
       - name: Install .NET WASM Build Tools
         run: dotnet workload install wasm-tools
       - name: Publish .NET Core Project
-        run: dotnet publish ./FeedbackPages/FeedbackPages.csproj -c:Release -p:GHPages=true -o dist/FeedbackPages --nologo
+        run: dotnet publish tempFeed/FeedbackPages/FeedbackPages/FeedbackPages.csproj -c:Release -p:GHPages=true -o dist/FeedbackPages --nologo
       - name: Commit wwwroot to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
