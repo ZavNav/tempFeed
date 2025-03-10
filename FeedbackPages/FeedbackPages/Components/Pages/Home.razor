@@ -1,0 +1,58 @@
+﻿@page "/"
+@inject IStatsService StatsService
+@attribute [StreamRendering(true)]
+@rendermode InteractiveServer
+
+<PageTitle>Home</PageTitle>
+
+<h2 class="text-center"><strong>Оставьте отзыв на любом удобном Вам ресурсе:</strong></h2>
+
+<div class="container position-relative mt-5" style="max-width: 500px">
+    <div class="row row-cols-2">
+        <div class="col bg-light p-4 d-inline-flex flex-column justify-content-center align-items-center">
+            <h4 class="text-center"><strong>Яндекс</strong></h4>
+            <a @onclick="() => StatsService.UpdateStatById(1)" href="https://yandex.ru/maps/org/rem_clinic/166450266028/?ll=30.332433%2C59.953781&z=16" target="_blank">
+                <img src="Images/Yandex_icon.svg.png" alt="..." class="rounded img-fluid" style="max-width: 200px"/>
+            </a>
+        </div>
+        <div class="col bg-light p-4 d-inline-flex flex-column justify-content-center align-items-center">
+            <h4 class="text-center"><strong>ПроДокторов</strong></h4>
+            <a @onclick="() => StatsService.UpdateStatById(2)" href="https://prodoctorov.ru/spb/lpu/72021-klinika-rem-clinic-ranee-medicinskaya-kollegiya/#:~:text=214%2D83%2D54-,Клиника%20«Rem%20clinic»%20(ранее%20«Медицинская%20коллегия»),1." target="_blank">
+                <img src="Images/prodoctorov-logo-icon.svg" alt="..." class="rounded img-fluid" style="max-width: 200px"/>
+            </a>
+        </div>
+        <div class="col bg-light p-4 d-inline-flex flex-column justify-content-center align-items-center">
+            <h4 class="text-center"><strong>НаПоправку</strong></h4>
+            <a @onclick="() => StatsService.UpdateStatById(3)" href="https://spb.napopravku.ru/clinics/rem-clinic-mnogoprofilnaya-klinika/" target="_blank">
+                <img src="Images/napopravku.png" alt="..." class="rounded img-fluid" style="max-width: 200px"/>
+            </a>
+        </div>
+        <div class="col bg-light p-4 d-inline-flex flex-column justify-content-center align-items-center">
+            <h4 class="text-center"><strong>Отзовик</strong></h4>
+            <a @onclick="() => StatsService.UpdateStatById(4)" href="https://bootstrap-4.ru/docs/4.0/utilities/colors/" target="_blank">
+                <img src="Images/sajt-otzovik.png" alt="..." class="rounded img-fluid" style="max-width: 200px"/>
+            </a>
+        </div>
+        <div class="col bg-light p-4 d-inline-flex flex-column justify-content-center align-items-center">
+            <h4 class="text-center"><strong>2ГИС</strong></h4>
+            <a @onclick="() => StatsService.UpdateStatById(4)" href="https://2gis.ru/spb/firm/70000001047103966" target="_blank">
+                <img src="Images/2gis.png" alt="..." class="rounded img-fluid" style="max-width: 200px"/>
+            </a>
+        </div>
+        <div class="col bg-light p-4 d-inline-flex flex-column justify-content-center align-items-center">
+            <h4 class="text-center"><strong>СберЗдоровье</strong></h4>
+            <a @onclick="() => StatsService.UpdateStatById(4)" href="https://spb.docdoc.ru/clinic/meditsinskaya_kollegiya" target="_blank">
+                <img src="Images/sber.png" alt="..." class="rounded img-fluid" style="max-width: 200px"/>
+            </a>
+        </div>
+    </div>
+</div>
+<AuthorizeView>
+    <Authorized>
+        <a href="/admin/stats" class="position-absolute top-0 start-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-gear-wide-connected" viewBox="0 0 16 16">
+                <path d="M7.068.727c.243-.97 1.62-.97 1.864 0l.071.286a.96.96 0 0 0 1.622.434l.205-.211c.695-.719 1.888-.03 1.613.931l-.08.284a.96.96 0 0 0 1.187 1.187l.283-.081c.96-.275 1.65.918.931 1.613l-.211.205a.96.96 0 0 0 .434 1.622l.286.071c.97.243.97 1.62 0 1.864l-.286.071a.96.96 0 0 0-.434 1.622l.211.205c.719.695.03 1.888-.931 1.613l-.284-.08a.96.96 0 0 0-1.187 1.187l.081.283c.275.96-.918 1.65-1.613.931l-.205-.211a.96.96 0 0 0-1.622.434l-.071.286c-.243.97-1.62.97-1.864 0l-.071-.286a.96.96 0 0 0-1.622-.434l-.205.211c-.695.719-1.888.03-1.613-.931l.08-.284a.96.96 0 0 0-1.186-1.187l-.284.081c-.96.275-1.65-.918-.931-1.613l.211-.205a.96.96 0 0 0-.434-1.622l-.286-.071c-.97-.243-.97-1.62 0-1.864l.286-.071a.96.96 0 0 0 .434-1.622l-.211-.205c-.719-.695-.03-1.888.931-1.613l.284.08a.96.96 0 0 0 1.187-1.186l-.081-.284c-.275-.96.918-1.65 1.613-.931l.205.211a.96.96 0 0 0 1.622-.434zM12.973 8.5H8.25l-2.834 3.779A4.998 4.998 0 0 0 12.973 8.5m0-1a4.998 4.998 0 0 0-7.557-3.779l2.834 3.78zM5.048 3.967l-.087.065zm-.431.355A4.98 4.98 0 0 0 3.002 8c0 1.455.622 2.765 1.615 3.678L7.375 8zm.344 7.646.087.065z"/>
+            </svg>
+        </a>
+    </Authorized>
+</AuthorizeView>

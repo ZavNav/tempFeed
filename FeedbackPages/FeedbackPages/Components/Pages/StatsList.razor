@@ -1,0 +1,35 @@
+@page "/admin/stats"
+@using Microsoft.AspNetCore.Authorization
+@inject IStatsService StatsService
+@attribute [Authorize(Roles = "admin")]
+@attribute [StreamRendering(true)]
+
+<h3>Статистика</h3>
+
+@if (_stats == null)
+{
+    <span>Загрузка...</span>
+}
+else if (_stats.Count == 0)
+{
+    <span>Таблица пуста</span>
+}
+else
+{
+    <ul>
+        @foreach (var stat in _stats)
+        {
+            <li>@stat.Name = @stat.Count переходов</li>
+        }
+    </ul>
+}
+
+@code {
+    List<PageStats>? _stats;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _stats = await StatsService.GetAllStats();
+    }
+
+}

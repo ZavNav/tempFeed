@@ -1,0 +1,78 @@
+@page "/admin/login"
+@using FeedbackPages.ViewModels
+@using Microsoft.AspNetCore.Authentication
+@using Microsoft.AspNetCore.Authentication.Cookies
+@inject IAdminService AdminService
+@inject NavigationManager NavigationManager
+
+<section class="vh-100">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6 text-black">
+                    <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+
+                        <EditForm Model="Model" OnSubmit="Authenticate" FormName="auth" style="width: 23rem;">
+                            <DataAnnotationsValidator/>
+                            <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Войти как администратор</h3>
+                            
+                            <div data-mdb-input-init class="form-outline mb-4">
+                                <label class="form-label" for="loginForm">Логин</label>
+                                <InputText @bind-Value="Model.Login" id="loginForm" class="form-control form-control-lg">
+                                    @Model.Login
+                                </InputText>
+                                <ValidationMessage For="() => Model.Login"/>
+                            </div>
+
+                            <div data-mdb-input-init class="form-outline mb-4">
+                                <label class="form-label" for="passForm">Пароль</label>
+                                <InputText @bind-Value="Model.Password" type="password" id="passForm" class="form-control form-control-lg">
+                                    @Model.Password
+                                </InputText>
+                                <ValidationMessage For="() => Model.Password"/>
+                            </div>
+                            <div class="mb-3 text-center">
+                                <span class="text-danger">@_errorMessage</span>
+                            </div>
+
+                            <div class="pt-1 mb-4">
+                                <button data-mdb-button-init data-mdb-ripple-init class="btn btn-info btn-lg btn-block" type="submit">Войти</button>
+                            </div>
+                        </EditForm>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+
+@code
+{
+    [CascadingParameter]
+    public HttpContext? HttpContext { get; set; }
+    
+    [SupplyParameterFromForm] 
+    public LoginViewModel Model { get; set; } = new();
+
+    private string? _errorMessage;
+
+    private async Task Authenticate()
+    {
+        var result = await AdminService.TryLogin(Model);
+
+        if (!result)
+        {
+            _errorMessage = "Логин или пароль указаны неверно";
+            return;
+        }
+
+        var claims = new List<Claim>
+        {
+            new(ClaimTypes.Name, Model.Login),
+            new(ClaimTypes.Role, "admin")
+        };
+
+        var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+        var principal = new ClaimsPrincipal(identity);
+        await HttpContext.SignInAsync(principal);
+        NavigationManager.NavigateTo("/");
+    }
+}
