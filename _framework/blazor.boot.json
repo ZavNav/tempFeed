@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "FeedbackPages.Client",
   "resources": {
-    "hash": "sha256-a78wwzNQiqkLUa+AOeJT6zEdetin6riJh+UtCGM+Mj0=",
+    "hash": "sha256-RbmUPDzRgIsMSoDm3AW+40kOAkdjbSGucLanM393dAk=",
     "jsModuleNative": {
       "dotnet.native.8.0.13.0ujcjabt5p.js": "sha256-4+3EHTHu5wv2hIX1b6EtOcoYvMx4s6RzH/gCtLyN7B0="
     },
@@ -17,7 +17,7 @@
       "icudt_no_CJK.dat": "sha256-L7sV7NEYP37/Qr2FPCePo5cJqRgTXRwGHuwF5Q+0Nfs="
     },
     "assembly": {
-      "FeedbackPages.Client.wasm": "sha256-an8ySu9NxUZxeMLjV+mi6tOvjqKhpqKfm63sW+CHiKU=",
+      "FeedbackPages.Client.wasm": "sha256-tXMm//XHe5PjmD/6Bh+LrgB2D5Vm4rGZd6MCs0GPJVA=",
       "Microsoft.AspNetCore.Components.wasm": "sha256-8q8BJbEul7r7JIdhfdjAdHkmPBRpJDoC5CpDkVel4xg=",
       "Microsoft.AspNetCore.Components.Web.wasm": "sha256-074uui+XuLpQoXIMg+3txEGLR2A125h5Yu0A7k96BD8=",
       "Microsoft.AspNetCore.Components.WebAssembly.wasm": "sha256-PCeASta+6S4Xn82GvMohiFDvkXGEXFcbosRQuoGTYVk=",
